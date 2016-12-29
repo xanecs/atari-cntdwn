@@ -1,6 +1,6 @@
 # \[WIP\] Atari Mega ST New Year Countdown
 
-![clock screen](https://raw.githubusercontent.com/xanecs/atari-cntdwn/master/doc/screen_clock.png)
+![clock screen](https://raw.githubusercontent.com/xanecs/atari-cntdwn/master/doc/screen_clock.png)  
 Fig. 1 *The clock screen of the countdown*
 
 A countdown for the Atari Mega ST with TOS, written in modern C
@@ -16,7 +16,7 @@ Over the years, there have been Microsoft .NET Applications, Web sites, Somethin
 A friend found an Atari Mega ST and after I read that it had a built in Real Time Clock, I just had to do it.
 I knew it was not going to be easy, this is my first real C program after all.
 
-![finish screen](https://raw.githubusercontent.com/xanecs/atari-cntdwn/master/doc/screen_clock.png)
+![finish screen](https://raw.githubusercontent.com/xanecs/atari-cntdwn/master/doc/screen_finish.png)  
 Fig. 2 *What you'll see when the new year has arrived*
 
 ## The Build system
