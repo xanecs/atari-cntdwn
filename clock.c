@@ -22,6 +22,8 @@ char hours[3] = "99";
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "IncompatibleTypes"
+
+#ifdef COLOR
 OBJECT clock_tree[7] = {
     {-1, 1, 5, G_BOX, DEFAULT, NORMAL, SPEC_BLACK, 0, 0, 320, 200},
         {3, 2, 2, G_BOX, DEFAULT, SHADOWED, SPEC, 80, 80, 40, 40},
@@ -31,6 +33,18 @@ OBJECT clock_tree[7] = {
         {0, 6, 6, G_BOX, DEFAULT, SHADOWED, SPEC, 200, 80, 40, 40},
             {5, -1, -1, G_STRING, DEFAULT | LASTOB, NORMAL, seconds, 12, 0, 40, 40}
 };
+#else
+OBJECT clock_tree[7] = {
+        {-1, 1, 5, G_BOX, DEFAULT, NORMAL, (IP_3PATT << 4 | C_BLACK), 0, 0, 640, 400},
+        {3, 2, 2, G_BOX, DEFAULT, SHADOWED, SPEC, 160, 160, 80, 80},
+        {1, -1, -1, G_STRING, DEFAULT, NORMAL, hours, 32, 0, 80, 80},
+        {5, 4, 4, G_BOX, DEFAULT, SHADOWED, SPEC, 280, 160, 80, 80},
+        {3, -1, -1, G_STRING, DEFAULT, NORMAL, minutes, 32, 0, 80, 80},
+        {0, 6, 6, G_BOX, DEFAULT, SHADOWED, SPEC, 400, 160, 80, 80},
+        {5, -1, -1, G_STRING, DEFAULT | LASTOB, NORMAL, seconds, 32, 0, 80, 80}
+};
+#endif
+
 #pragma clang diagnostic pop
 
 void init_clock(void) {
@@ -45,7 +59,11 @@ void init_clock(void) {
 
     target = mktime(lt);
     free(lt);
+#ifdef COLOR
     draw_clock(0, 0, 320, 200);
+#else
+    draw_clock(0, 0, 640, 400);
+#endif
 }
 
 void draw_clock(short cx, short cy, short cw, short ch) {
@@ -74,20 +92,28 @@ int update_clock(void) {
     strftime(minutes, 3, "%M", ltime);
     strftime(hours, 3, "%H", ltime);
 
-    segment(seconds);
-    segment(minutes);
-    segment(hours);
-
     if (ltime->tm_sec != psec) {
+#ifdef COLOR
         draw_clock(212, 96, 16, 8);
+#else
+        draw_clock(430, 192, 18, 16);
+#endif
     }
 
     if (ltime->tm_min != pmin) {
+#ifdef COLOR
         draw_clock(152, 96, 16, 8);
+#else
+        draw_clock(312, 192, 18, 16);
+#endif
     }
 
     if (ltime->tm_hour != phr) {
+#ifdef COLOR
         draw_clock(92, 96, 16, 8);
+#else
+        draw_clock(192, 192, 18, 16);
+#endif
     }
 
     psec = ltime->tm_sec;
@@ -98,11 +124,4 @@ int update_clock(void) {
 
 void deinit_clock(void) {
 
-}
-
-void segment(char *str) {
-    while(*str != '\0') {
-        *str -= 0;
-        str++;
-    }
 }
