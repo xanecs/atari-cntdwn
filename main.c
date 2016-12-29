@@ -10,10 +10,11 @@ int scene = 1;
 int main(void) {
     appl_init();
 
+    //Hide cursor
+    graf_mouse(256, NULL);
+
     init();
 
-    //Turn off cursor
-    graf_mouse(256, NULL);
     VdiHdl iGraf = graf_handle(NULL, NULL, NULL, NULL);
     char echo[2];
     short echo_xy[2] = {0, 0};

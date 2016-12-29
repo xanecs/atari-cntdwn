@@ -5,6 +5,7 @@
 #include <time.h>
 #include "state.h"
 #include "sound.h"
+#include "melody.h"
 
 char year[5];
 
@@ -48,7 +49,7 @@ void init_finish(void) {
     strftime(year, 5, "%Y", lt);
     free(lt);
     objc_draw(finish_tree, ROOT, MAX_DEPTH, 0, 0, 320, 200);
-    play();
+    play(entchen);
 }
 
 int update_finish(void) {

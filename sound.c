@@ -12,6 +12,7 @@ void clear_sound(void) {
     Giaccess(0, AVOL);
     Giaccess(0, BVOL);
     Giaccess(0, CVOL);
+    mixer(ALLOFF);
 }
 
 
@@ -32,36 +33,27 @@ void beep(void) {
     clear_sound();
 }
 
-void play(void) {
-    FILE *fd = fopen("snd.ym", "r");
-    fseek(fd, 0, SEEK_END);
-    long sz = (ftell(fd) - 4) / 14;
-    rewind(fd);
-    printf("%li frames\n", sz);
-    char *data = malloc(14 * sz * sizeof(char));
-    fseek(fd, 4, SEEK_SET);
-    int i;
-    for (i = 0; i < 14; i++) {
-        fread(data + i * sz, 1, (size_t)sz, fd);
+void play(SoundFrame *melody) {
+    while (melody++ != NULL) {
+        playFrame(*melody);
     }
-    long f;
-    for(f = 0; f < sz; f++) {
-        Giaccess(ACOARSE, *(data + 0*sz + f));
-        Giaccess(AFINE, *(data + 1*sz + f));
-        Giaccess(BCOARSE, *(data + 2*sz + f));
-        Giaccess(BFINE, *(data + 3*sz + f));
-        Giaccess(CCOARSE, *(data + 4*sz + f));
-        Giaccess(CFINE, *(data + 5*sz + f));
-        Giaccess(NOISEPER, *(data + 6*sz + f));
-        Giaccess(MIXER, *(data + 7*sz + f));
-        Giaccess(AVOL, *(data + 8*sz + f));
-        Giaccess(BVOL, *(data + 9*sz + f));
-        Giaccess(CVOL, *(data + 10*sz + f));
-        Giaccess(ENVCYCLE, *(data + 11*sz + f));
-        Giaccess(ENVCOARSE, *(data + 12*sz + f));
-        Giaccess(ENVFINE, *(data + 13*sz + f));
-        usleep(20000);
-    }
-    free(data);
-    fclose(fd);
+    clear_sound();
+}
+
+void playFrame(SoundFrame frm) {
+    Giaccess(frm.aFine, AFINE);
+    Giaccess(frm.aCoarse, ACOARSE);
+    Giaccess(frm.bFine, BFINE);
+    Giaccess(frm.bCoarse, BCOARSE);
+    Giaccess(frm.cFine, CFINE);
+    Giaccess(frm.cCoarse, CCOARSE);
+    Giaccess(frm.noisePer, NOISEPER);
+    Giaccess(frm.mixer, MIXER);
+    Giaccess(frm.aVol, AVOL);
+    Giaccess(frm.bVol, BVOL);
+    Giaccess(frm.cVol, CVOL);
+    Giaccess(frm.envFine, ENVFINE);
+    Giaccess(frm.envCoarse, ENVCOARSE);
+    Giaccess(frm.envCycle, ENVCYCLE);
+    usleep(frm.length);
 }
