@@ -1,7 +1,6 @@
 #include "sound.h"
 #include <osbind.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
 
 void clear_sound(void) {

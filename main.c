@@ -1,11 +1,10 @@
-#include <stdlib.h>
+#include <stddef.h>
 #include <gem.h>
-#include <gemx.h>
 #include "main.h"
 #include "clock.h"
 #include "finish.h"
 
-int scene = 1;
+int scene = 0;
 
 int main(void) {
     appl_init();

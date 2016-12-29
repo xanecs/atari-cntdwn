@@ -1,10 +1,8 @@
 #include "clock.h"
 #include <gem.h>
-#include <gemx.h>
 #include "state.h"
 #include <time.h>
-#include <stdlib.h>
-
+#include <malloc.h>
 
 #define SPEC 0x111F0L
 #define SPEC_BLACK 0x00078L
@@ -15,19 +13,25 @@ int psec = 99;
 int pmin = 99;
 int phr = 99;
 
+clock_t lastFlipClock = 0;
+time_t lastFlipTime = 0;
+
 char seconds[3] = "99";
 char minutes[3] = "99";
 char hours[3] = "99";
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "IncompatibleTypes"
 OBJECT clock_tree[7] = {
-    {-1, 1, 5, G_BOX, DEFAULT, NORMAL, (OBSPEC)SPEC_BLACK, 0, 0, 320, 200},
-        {3, 2, 2, G_BOX, DEFAULT, SHADOWED, (OBSPEC)SPEC, 80, 80, 40, 40},
-            {1, -1, -1, G_STRING, DEFAULT, NORMAL, (OBSPEC)hours, 12, 0, 40, 40},
-        {5, 4, 4, G_BOX, DEFAULT, SHADOWED, (OBSPEC)SPEC, 140, 80, 40, 40},
-            {3, -1, -1, G_STRING, DEFAULT, NORMAL, (OBSPEC)minutes, 12, 0, 40, 40},
-        {0, 6, 6, G_BOX, DEFAULT, SHADOWED, (OBSPEC)SPEC, 200, 80, 40, 40},
-            {5, -1, -1, G_STRING, DEFAULT | LASTOB, NORMAL, (OBSPEC)seconds, 12, 0, 40, 40}
+    {-1, 1, 5, G_BOX, DEFAULT, NORMAL, SPEC_BLACK, 0, 0, 320, 200},
+        {3, 2, 2, G_BOX, DEFAULT, SHADOWED, SPEC, 80, 80, 40, 40},
+            {1, -1, -1, G_STRING, DEFAULT, NORMAL, hours, 12, 0, 40, 40},
+        {5, 4, 4, G_BOX, DEFAULT, SHADOWED, SPEC, 140, 80, 40, 40},
+            {3, -1, -1, G_STRING, DEFAULT, NORMAL, minutes, 12, 0, 40, 40},
+        {0, 6, 6, G_BOX, DEFAULT, SHADOWED, SPEC, 200, 80, 40, 40},
+            {5, -1, -1, G_STRING, DEFAULT | LASTOB, NORMAL, seconds, 12, 0, 40, 40}
 };
+#pragma clang diagnostic pop
 
 void init_clock(void) {
     time_t rt = time(NULL);
@@ -49,7 +53,18 @@ void draw_clock(short cx, short cy, short cw, short ch) {
 }
 
 int update_clock(void) {
-    time_t rawtime = target - time(NULL);
+    time_t curTime = time(NULL);
+
+    if (curTime != lastFlipTime) {
+        lastFlipClock = clock();
+        lastFlipTime = curTime;
+    }
+
+    time_t rawtime = target - curTime;
+    if (lastFlipClock + CLOCKS_PER_SEC < clock()) {
+        rawtime--;
+    }
+
     if (rawtime <= 0) {
         return 1;
     }

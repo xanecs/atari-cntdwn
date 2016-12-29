@@ -1,8 +1,8 @@
 #include "finish.h"
 #include <gem.h>
-#include <gemx.h>
-#include <stdlib.h>
+#include <stddef.h>
 #include <time.h>
+#include <malloc.h>
 #include "state.h"
 #include "sound.h"
 #include "melody.h"
