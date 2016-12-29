@@ -45,7 +45,7 @@ typedef struct _frame {
 void mixer(int);
 void clear_sound(void);
 void beep(void);
-void play(SoundFrame*);
+void play(SoundFrame*, int);
 void playFrame(SoundFrame);
 
 #endif

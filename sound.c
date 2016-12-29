@@ -32,9 +32,10 @@ void beep(void) {
     clear_sound();
 }
 
-void play(SoundFrame *melody) {
-    while (melody++ != NULL) {
-        playFrame(*melody);
+void play(SoundFrame *melody, int length) {
+    int i;
+    for (i = 0; i < length; i++) {
+        playFrame(melody[i]);
     }
     clear_sound();
 }

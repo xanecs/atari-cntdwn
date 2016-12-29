@@ -67,8 +67,8 @@ SoundFrame entchen[] = {
 
         {221, 1, 0, 0, 0, 0, 0, TONEA, 15, 0, 0, 0, 0, 0, 490000L},
         {0,   0, 0, 0, 0, 0, 0, ALLOFF, 0, 0, 0, 0, 0, 0,  10000L},
-
-        NULL
 };
+
+int entchen_len = 54;
 
 #endif //CNTDWN_MELODY_H
