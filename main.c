@@ -5,7 +5,7 @@
 #include "clock.h"
 #include "finish.h"
 
-int scene = 0;
+int scene = 1;
 
 int main(void) {
     appl_init();

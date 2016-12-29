@@ -13,7 +13,9 @@ set(SOURCE_FILES
     finish.h
     main.c
     main.h
-    state.h)
+    state.h
+    sound.c
+    sound.h)
 
 add_executable(cntdwn ${SOURCE_FILES})
 
