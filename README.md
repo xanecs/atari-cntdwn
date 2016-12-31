@@ -1,5 +1,8 @@
 # \[WIP\] Atari Mega ST New Year Countdown
 
+![clock screen](https://raw.githubusercontent.com/xanecs/atari-cntdwn/master/doc/screen_clock.png)
+Fig. 1 *The clock screen of the countdown*
+
 A countdown for the Atari Mega ST with TOS, written in modern C
 
 ## Preface
@@ -13,6 +16,8 @@ Over the years, there have been Microsoft .NET Applications, Web sites, Somethin
 A friend found an Atari Mega ST and after I read that it had a built in Real Time Clock, I just had to do it.
 I knew it was not going to be easy, this is my first real C program after all.
 
+![finish screen](https://raw.githubusercontent.com/xanecs/atari-cntdwn/master/doc/screen_clock.png)
+Fig. 2 *What you'll see when the new year has arrived*
 
 ## The Build system
 
@@ -46,3 +51,9 @@ But, there are some pretty comprehensive books out there that you can find in li
 to more modern C style. Use your intuition first (e.g. they often do some crazy preprocessor magic to define compiler
 agnostic integer types, but we can use inttypes.h for this.) After that just try to get rid of the GCC warnings and
 you should be good to go.
+
+I have found the following to be very useful:
+
+- Aumiller, Luda, Möllmann *Atari ST: GEM-Programmierung in C*. Markt&Technik, 1987 (German)
+- *GEMLIB documentation.* http://arnaud.bercegeay.free.fr/gemlib/html/
+- Wikipedia *Atari ST character set.* https://en.wikipedia.org/wiki/Atari_ST_character_set
