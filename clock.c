@@ -26,7 +26,7 @@ OBJECT clock_tree[7] = {
         {5, 4, 4, G_BOX, DEFAULT, SHADOWED, (OBSPEC)SPEC, 140, 80, 40, 40},
             {3, -1, -1, G_STRING, DEFAULT, NORMAL, (OBSPEC)minutes, 12, 0, 40, 40},
         {0, 6, 6, G_BOX, DEFAULT, SHADOWED, (OBSPEC)SPEC, 200, 80, 40, 40},
-            {5, -1, -1, G_STRING, DEFAULT|LASTOB, NORMAL, (OBSPEC)seconds, 12, 0, 40, 40}
+            {5, -1, -1, G_STRING, DEFAULT | LASTOB, NORMAL, (OBSPEC)seconds, 12, 0, 40, 40}
 };
 
 void init_clock(void) {

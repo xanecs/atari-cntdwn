@@ -38,7 +38,7 @@ TEDINFO ted = {
 OBJECT finish_tree[] = {
         {-1, 1, 2, G_BOX, DEFAULT, NORMAL, (IP_SOLID << 4 | C_LMAGENTA), 0, 0, 320, 200},
             {2, -1, -1, G_TEXT, DEFAULT, NORMAL, &ted_yr, 0, 85, 320, 16},
-            {0, -1, -1, G_TEXT, DEFAULT, NORMAL, &ted, 0, 102, 320, 16}
+            {0, -1, -1, G_TEXT, DEFAULT | LASTOB, NORMAL, &ted, 0, 102, 320, 16}
 };
 
 void init_finish(void) {
