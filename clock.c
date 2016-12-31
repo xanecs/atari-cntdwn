@@ -19,7 +19,7 @@ char seconds[3] = "99";
 char minutes[3] = "99";
 char hours[3] = "99";
 
-OBJECT tree[7] = {
+OBJECT clock_tree[7] = {
     {-1, 1, 5, G_BOX, DEFAULT, NORMAL, (OBSPEC)SPEC_BLACK, 0, 0, 320, 200},
         {3, 2, 2, G_BOX, DEFAULT, SHADOWED, (OBSPEC)SPEC, 80, 80, 40, 40},
             {1, -1, -1, G_STRING, DEFAULT, NORMAL, (OBSPEC)hours, 12, 0, 40, 40},
@@ -35,9 +35,9 @@ void init_clock(void) {
     lt->tm_sec = 0;
     lt->tm_min = 0;
     lt->tm_hour = 0;
-    lt->tm_year = 2016 - 1900;
-    lt->tm_mon = 11;
-    lt->tm_mday = 26;
+    lt->tm_year++;
+    lt->tm_mon = 0;
+    lt->tm_mday = 1;
 
     target = mktime(lt);
     free(lt);
@@ -45,7 +45,7 @@ void init_clock(void) {
 }
 
 void draw_clock(short cx, short cy, short cw, short ch) {
-    objc_draw(tree, ROOT, MAX_DEPTH, cx, cy, cw, ch);
+    objc_draw(clock_tree, ROOT, MAX_DEPTH, cx, cy, cw, ch);
 }
 
 int update_clock(void) {
@@ -58,6 +58,10 @@ int update_clock(void) {
     strftime(seconds, 3, "%S", ltime);
     strftime(minutes, 3, "%M", ltime);
     strftime(hours, 3, "%H", ltime);
+
+    segment(seconds);
+    segment(minutes);
+    segment(hours);
 
     if (ltime->tm_sec != psec) {
         draw_clock(212, 96, 16, 8);
@@ -79,4 +83,11 @@ int update_clock(void) {
 
 void deinit_clock(void) {
 
+}
+
+void segment(char *str) {
+    while(*str != '\0') {
+        *str -= 0;
+        str++;
+    }
 }

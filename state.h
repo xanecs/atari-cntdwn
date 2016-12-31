@@ -19,4 +19,21 @@
 #define OUTLINED   0x0010
 #define SHADOWED   0x0020
 
+#define C_WHITE     0x0
+#define C_BLACK     0x1
+#define C_RED       0x2
+#define C_GREEN     0x3
+#define C_BLUE      0x4
+#define C_CYAN      0x5
+#define C_YELLOW    0x6
+#define C_MAGENTA   0x7
+#define C_LWHITE    0x8
+#define C_LBLACK    0x9
+#define C_LRED      0xA
+#define C_LGREEN    0xB
+#define C_LBLUE     0xC
+#define C_LCYAN     0xD
+#define C_LYELLOW   0xE
+#define C_LMAGENTA  0xF
+
 #endif // STATE_INCLUDED
