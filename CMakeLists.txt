@@ -18,6 +18,10 @@ set(SOURCE_FILES
     sound.h
     melody.h)
 
-add_executable(cntdwn ${SOURCE_FILES})
 
-target_link_libraries(cntdwn gem)
+add_executable(cntdwn_c.prg ${SOURCE_FILES})
+target_compile_options(cntdwn_c.prg PUBLIC -DCOLOR)
+target_link_libraries(cntdwn_c.prg gem)
+
+add_executable(cntdwn_m.prg ${SOURCE_FILES})
+target_link_libraries(cntdwn_m.prg gem)
