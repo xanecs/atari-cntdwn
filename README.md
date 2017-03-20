@@ -1,4 +1,4 @@
-# \[WIP\] Atari Mega ST New Year Countdown
+# Atari Mega ST New Year Countdown
 
 ![clock screen](https://raw.githubusercontent.com/xanecs/atari-cntdwn/master/doc/screen_clock.png)  
 Fig. 1 *The clock screen of the countdown*
